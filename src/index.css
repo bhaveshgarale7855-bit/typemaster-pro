@@ -1,0 +1,530 @@
+@import "tailwindcss";
+
+/* =========================================================
+   TYPEMASTER PRO - GLOBAL THEME SYSTEM
+   ========================================================= */
+
+:root {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --tm-bg: #f8fafc;
+  --tm-surface: #ffffff;
+  --tm-surface-soft: #f1f5f9;
+  --tm-border: #e2e8f0;
+
+  --tm-text: #0f172a;
+  --tm-text-secondary: #334155;
+  --tm-text-muted: #64748b;
+
+  --tm-accent: #2563eb;
+  --tm-accent-hover: #1d4ed8;
+  --tm-accent-soft: #eff6ff;
+  --tm-accent-border: #bfdbfe;
+}
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+html[data-theme="dark"] {
+  --tm-bg: #0f172a;
+  --tm-surface: #111827;
+  --tm-surface-soft: #1e293b;
+  --tm-border: #334155;
+
+  --tm-text: #f8fafc;
+  --tm-text-secondary: #cbd5e1;
+  --tm-text-muted: #94a3b8;
+}
+
+/* =========================================================
+   ACCENT COLORS
+   ========================================================= */
+
+html[data-accent="blue"] {
+  --tm-accent: #2563eb;
+  --tm-accent-hover: #1d4ed8;
+  --tm-accent-soft: #eff6ff;
+  --tm-accent-border: #bfdbfe;
+}
+
+html[data-accent="purple"] {
+  --tm-accent: #7c3aed;
+  --tm-accent-hover: #6d28d9;
+  --tm-accent-soft: #f5f3ff;
+  --tm-accent-border: #ddd6fe;
+}
+
+html[data-accent="green"] {
+  --tm-accent: #16a34a;
+  --tm-accent-hover: #15803d;
+  --tm-accent-soft: #f0fdf4;
+  --tm-accent-border: #bbf7d0;
+}
+
+html[data-accent="orange"] {
+  --tm-accent: #ea580c;
+  --tm-accent-hover: #c2410c;
+  --tm-accent-soft: #fff7ed;
+  --tm-accent-border: #fed7aa;
+}
+
+html[data-accent="red"] {
+  --tm-accent: #dc2626;
+  --tm-accent-hover: #b91c1c;
+  --tm-accent-soft: #fef2f2;
+  --tm-accent-border: #fecaca;
+}
+
+html[data-accent="cyan"] {
+  --tm-accent: #0891b2;
+  --tm-accent-hover: #0e7490;
+  --tm-accent-soft: #ecfeff;
+  --tm-accent-border: #a5f3fc;
+}
+
+/* Dark accent backgrounds */
+
+html[data-theme="dark"][data-accent="blue"] {
+  --tm-accent-soft: #172554;
+  --tm-accent-border: #1e40af;
+}
+
+html[data-theme="dark"][data-accent="purple"] {
+  --tm-accent-soft: #2e1065;
+  --tm-accent-border: #6d28d9;
+}
+
+html[data-theme="dark"][data-accent="green"] {
+  --tm-accent-soft: #052e16;
+  --tm-accent-border: #166534;
+}
+
+html[data-theme="dark"][data-accent="orange"] {
+  --tm-accent-soft: #431407;
+  --tm-accent-border: #9a3412;
+}
+
+html[data-theme="dark"][data-accent="red"] {
+  --tm-accent-soft: #450a0a;
+  --tm-accent-border: #991b1b;
+}
+
+html[data-theme="dark"][data-accent="cyan"] {
+  --tm-accent-soft: #083344;
+  --tm-accent-border: #0e7490;
+}
+
+/* =========================================================
+   TEXT COLORS
+   ========================================================= */
+
+html[data-text-color="default"] {
+  --tm-text: #0f172a;
+  --tm-text-secondary: #334155;
+  --tm-text-muted: #64748b;
+}
+
+html[data-text-color="blue"] {
+  --tm-text: #1e3a8a;
+  --tm-text-secondary: #1d4ed8;
+  --tm-text-muted: #3b82f6;
+}
+
+html[data-text-color="purple"] {
+  --tm-text: #4c1d95;
+  --tm-text-secondary: #6d28d9;
+  --tm-text-muted: #8b5cf6;
+}
+
+html[data-text-color="green"] {
+  --tm-text: #14532d;
+  --tm-text-secondary: #15803d;
+  --tm-text-muted: #22c55e;
+}
+
+html[data-text-color="orange"] {
+  --tm-text: #7c2d12;
+  --tm-text-secondary: #c2410c;
+  --tm-text-muted: #f97316;
+}
+
+/* Keep text readable in dark mode */
+
+html[data-theme="dark"][data-text-color="default"] {
+  --tm-text: #f8fafc;
+  --tm-text-secondary: #cbd5e1;
+  --tm-text-muted: #94a3b8;
+}
+
+html[data-theme="dark"][data-text-color="blue"] {
+  --tm-text: #dbeafe;
+  --tm-text-secondary: #93c5fd;
+  --tm-text-muted: #60a5fa;
+}
+
+html[data-theme="dark"][data-text-color="purple"] {
+  --tm-text: #ede9fe;
+  --tm-text-secondary: #c4b5fd;
+  --tm-text-muted: #a78bfa;
+}
+
+html[data-theme="dark"][data-text-color="green"] {
+  --tm-text: #dcfce7;
+  --tm-text-secondary: #86efac;
+  --tm-text-muted: #4ade80;
+}
+
+html[data-theme="dark"][data-text-color="orange"] {
+  --tm-text: #ffedd5;
+  --tm-text-secondary: #fdba74;
+  --tm-text-muted: #fb923c;
+}
+
+/* =========================================================
+   GLOBAL HTML / BODY
+   ========================================================= */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+
+  background-color: var(--tm-bg);
+  color: var(--tm-text);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  overflow-x: hidden;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* =========================================================
+   GLOBAL SURFACES
+   ========================================================= */
+
+body,
+#root {
+  background-color: var(--tm-bg);
+  color: var(--tm-text);
+}
+
+.tm-bg {
+  background-color: var(--tm-bg) !important;
+}
+
+.tm-surface {
+  background-color: var(--tm-surface) !important;
+}
+
+.tm-surface-soft {
+  background-color: var(--tm-surface-soft) !important;
+}
+
+.tm-border {
+  border-color: var(--tm-border) !important;
+}
+
+.tm-text {
+  color: var(--tm-text) !important;
+}
+
+.tm-text-secondary {
+  color: var(--tm-text-secondary) !important;
+}
+
+.tm-text-muted {
+  color: var(--tm-text-muted) !important;
+}
+
+/* =========================================================
+   GLOBAL ACCENT HELPERS
+   ========================================================= */
+
+.tm-accent {
+  color: var(--tm-accent) !important;
+}
+
+.tm-accent-bg {
+  background-color: var(--tm-accent) !important;
+  color: white !important;
+}
+
+.tm-accent-soft {
+  background-color: var(--tm-accent-soft) !important;
+}
+
+.tm-accent-border {
+  border-color: var(--tm-accent-border) !important;
+}
+
+.tm-accent-button {
+  background-color: var(--tm-accent) !important;
+  color: white !important;
+}
+
+.tm-accent-button:hover {
+  background-color: var(--tm-accent-hover) !important;
+}
+
+/* =========================================================
+   COMMON TAILWIND BACKGROUNDS
+   Makes existing pages theme-aware without rewriting them
+   ========================================================= */
+
+html[data-theme="dark"] .bg-white {
+  background-color: var(--tm-surface) !important;
+}
+
+html[data-theme="dark"] .bg-slate-50,
+html[data-theme="dark"] .bg-gray-50 {
+  background-color: var(--tm-bg) !important;
+}
+
+html[data-theme="dark"] .bg-slate-100,
+html[data-theme="dark"] .bg-gray-100 {
+  background-color: var(--tm-surface-soft) !important;
+}
+
+html[data-theme="dark"] .bg-slate-200,
+html[data-theme="dark"] .bg-gray-200 {
+  background-color: #334155 !important;
+}
+
+/* Cards / panels */
+
+html[data-theme="dark"] .bg-slate-800 {
+  background-color: #1e293b !important;
+}
+
+html[data-theme="dark"] .bg-slate-900 {
+  background-color: #0f172a !important;
+}
+
+/* =========================================================
+   COMMON TEXT COLORS
+   ========================================================= */
+
+html[data-theme="dark"] .text-slate-900,
+html[data-theme="dark"] .text-gray-900 {
+  color: var(--tm-text) !important;
+}
+
+html[data-theme="dark"] .text-slate-800,
+html[data-theme="dark"] .text-gray-800 {
+  color: var(--tm-text) !important;
+}
+
+html[data-theme="dark"] .text-slate-700,
+html[data-theme="dark"] .text-gray-700 {
+  color: var(--tm-text-secondary) !important;
+}
+
+html[data-theme="dark"] .text-slate-600,
+html[data-theme="dark"] .text-gray-600 {
+  color: var(--tm-text-muted) !important;
+}
+
+html[data-theme="dark"] .text-slate-500,
+html[data-theme="dark"] .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+html[data-theme="dark"] .text-slate-400,
+html[data-theme="dark"] .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+/* =========================================================
+   BORDERS
+   ========================================================= */
+
+html[data-theme="dark"] .border-slate-100,
+html[data-theme="dark"] .border-gray-100 {
+  border-color: #1e293b !important;
+}
+
+html[data-theme="dark"] .border-slate-200,
+html[data-theme="dark"] .border-gray-200 {
+  border-color: var(--tm-border) !important;
+}
+
+html[data-theme="dark"] .border-slate-300,
+html[data-theme="dark"] .border-gray-300 {
+  border-color: #475569 !important;
+}
+
+/* =========================================================
+   ACCENT OVERRIDE FOR EXISTING BLUE UI
+   ========================================================= */
+
+html[data-accent="purple"] .bg-blue-500,
+html[data-accent="purple"] .bg-blue-600 {
+  background-color: var(--tm-accent) !important;
+}
+
+html[data-accent="green"] .bg-blue-500,
+html[data-accent="green"] .bg-blue-600 {
+  background-color: var(--tm-accent) !important;
+}
+
+html[data-accent="orange"] .bg-blue-500,
+html[data-accent="orange"] .bg-blue-600 {
+  background-color: var(--tm-accent) !important;
+}
+
+html[data-accent="red"] .bg-blue-500,
+html[data-accent="red"] .bg-blue-600 {
+  background-color: var(--tm-accent) !important;
+}
+
+html[data-accent="cyan"] .bg-blue-500,
+html[data-accent="cyan"] .bg-blue-600 {
+  background-color: var(--tm-accent) !important;
+}
+
+/* Blue hover states */
+
+html[data-accent="purple"] .hover\:bg-blue-700:hover,
+html[data-accent="green"] .hover\:bg-blue-700:hover,
+html[data-accent="orange"] .hover\:bg-blue-700:hover,
+html[data-accent="red"] .hover\:bg-blue-700:hover,
+html[data-accent="cyan"] .hover\:bg-blue-700:hover {
+  background-color: var(--tm-accent-hover) !important;
+}
+
+/* Blue text */
+
+html[data-accent="purple"] .text-blue-500,
+html[data-accent="purple"] .text-blue-600,
+html[data-accent="purple"] .text-blue-700,
+html[data-accent="green"] .text-blue-500,
+html[data-accent="green"] .text-blue-600,
+html[data-accent="green"] .text-blue-700,
+html[data-accent="orange"] .text-blue-500,
+html[data-accent="orange"] .text-blue-600,
+html[data-accent="orange"] .text-blue-700,
+html[data-accent="red"] .text-blue-500,
+html[data-accent="red"] .text-blue-600,
+html[data-accent="red"] .text-blue-700,
+html[data-accent="cyan"] .text-blue-500,
+html[data-accent="cyan"] .text-blue-600,
+html[data-accent="cyan"] .text-blue-700 {
+  color: var(--tm-accent) !important;
+}
+
+/* Blue borders */
+
+html[data-accent="purple"] .border-blue-200,
+html[data-accent="purple"] .border-blue-300,
+html[data-accent="green"] .border-blue-200,
+html[data-accent="green"] .border-blue-300,
+html[data-accent="orange"] .border-blue-200,
+html[data-accent="orange"] .border-blue-300,
+html[data-accent="red"] .border-blue-200,
+html[data-accent="red"] .border-blue-300,
+html[data-accent="cyan"] .border-blue-200,
+html[data-accent="cyan"] .border-blue-300 {
+  border-color: var(--tm-accent-border) !important;
+}
+
+/* =========================================================
+   ACCENT RINGS / OUTLINES
+   ========================================================= */
+
+html[data-accent="purple"] .ring-blue-500,
+html[data-accent="green"] .ring-blue-500,
+html[data-accent="orange"] .ring-blue-500,
+html[data-accent="red"] .ring-blue-500,
+html[data-accent="cyan"] .ring-blue-500 {
+  --tw-ring-color: var(--tm-accent) !important;
+}
+
+/* =========================================================
+   FORM ELEMENTS
+   ========================================================= */
+
+input,
+textarea,
+select {
+  color: var(--tm-text);
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+  background-color: var(--tm-surface) !important;
+  color: var(--tm-text) !important;
+  border-color: var(--tm-border) !important;
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: var(--tm-text-muted) !important;
+}
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+a {
+  color: inherit;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--tm-surface-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background-color: var(--tm-accent);
+  color: white;
+}
+
+/* =========================================================
+   FONTS
+   ========================================================= */
+
+.font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular,
+    Menlo, Monaco, Consolas, monospace;
+}
