@@ -723,10 +723,27 @@ export const GCCTBCTest: React.FC<GCCTBCTestProps> = ({
             setElapsedSeconds(finalElapsedSeconds);
             setStatus('finished');
 
+            // recordTestResult({
+            //     title: `GCC-TBC Remington Test - ${targetWpm} WPM`,
+            //     type: 'test',
+            //     // duration: finalElapsedSeconds,
+            //     durationSeconds: finalElapsedSeconds,
+            //     grossWpm: Math.round(metrics.grossWpm),
+            //     netWpm: Math.round(metrics.netWpm),
+            //     accuracy: Math.round(metrics.accuracy),
+            //     totalKeystrokes: metrics.totalChars,
+            //     correctKeystrokes: metrics.correctChars,
+            //     errorCount: Math.max(0, metrics.totalChars - metrics.correctChars),
+            //     consistencyScore: Math.round(metrics.accuracy),
+            //     errorKeys: {},
+            //     xpEarned,
+            //     timestamp: new Date().toISOString(),
+            // });
+
             recordTestResult({
                 title: `GCC-TBC Remington Test - ${targetWpm} WPM`,
                 type: 'test',
-                duration: finalElapsedSeconds,
+                durationSeconds: finalElapsedSeconds,
                 grossWpm: Math.round(metrics.grossWpm),
                 netWpm: Math.round(metrics.netWpm),
                 accuracy: Math.round(metrics.accuracy),
@@ -736,7 +753,6 @@ export const GCCTBCTest: React.FC<GCCTBCTestProps> = ({
                 consistencyScore: Math.round(metrics.accuracy),
                 errorKeys: {},
                 xpEarned,
-                timestamp: new Date().toISOString(),
             });
 
             if (passed) {
@@ -777,7 +793,30 @@ export const GCCTBCTest: React.FC<GCCTBCTestProps> = ({
             return;
         }
 
-        if (language === 'English' || keyboardType !== 'Remington') return;
+        // if (language === 'English' || keyboardType !== 'Remington') return;
+        // if (language === 'English') {
+        //     const value = typedTextRef.current + e.key;
+        //     typedTextRef.current = value;
+        //     setDisplayTypedText(value);
+        //     soundManager.playKeypress();
+        //     return;
+        // }
+
+        if (language === 'English') {
+            // Only actual printable characters should be added.
+            // Shift, CapsLock, Tab, arrows, Ctrl, Alt, etc. must not appear as text.
+            if (e.key.length === 1) {
+                const value = typedTextRef.current + e.key;
+                typedTextRef.current = value;
+                setDisplayTypedText(value);
+                soundManager.playKeypress();
+            }
+
+            e.preventDefault();
+            return;
+        }
+
+        if (keyboardType !== 'Remington') return;
 
         const mappedChar = e.shiftKey ? REMINGTON_SHIFT[e.key] : REMINGTON_NORMAL[e.key];
         if (!mappedChar) return;
@@ -805,13 +844,13 @@ export const GCCTBCTest: React.FC<GCCTBCTestProps> = ({
         // Chhoti 'i' matra ('f' key)
         else if (mappedChar === 'ि') {
             pendingPrefixMatraRef.current = 'ि';
-        } 
+        }
         // Apply matra after consonant
         else if (pendingPrefixMatraRef.current) {
             const matra = pendingPrefixMatraRef.current;
             pendingPrefixMatraRef.current = null;
             currentText += mappedChar + matra;
-        } 
+        }
         else {
             currentText += mappedChar;
         }
@@ -867,7 +906,7 @@ export const GCCTBCTest: React.FC<GCCTBCTestProps> = ({
             let className = 'text-slate-400';
 
             if (typedUnit === undefined) {
-                className = 'text-slate-500';
+                className = 'text-slate-800';
             } else if (typedUnit === unit) {
                 className = 'text-emerald-400';
             } else {
@@ -991,14 +1030,37 @@ export const GCCTBCTest: React.FC<GCCTBCTestProps> = ({
                     <div>SPEED: {Math.round(liveMetrics.netWpm)}</div>
                     <div>ACC: {Math.round(liveMetrics.accuracy)}%</div>
                     <div>TIME: {formatTime(timeLimitSeconds - elapsedSeconds)}</div>
+                    {/* End Test */}
+                    <button
+                        type="button"
+                        onClick={() =>
+                            finishTest(
+                                typedTextRef.current,
+                                Math.max(elapsedSeconds, 1)
+                            )
+                        }
+                        className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-black transition-all shadow-lg shadow-rose-600/20"
+                    >
+                        End Test
+                    </button>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                <div className="rounded-3xl bg-slate-950 border border-slate-800 p-6 max-h-[500px] overflow-y-auto leading-8">
-                    {renderSourceText()}
-                </div>
+                {/* Original passage */}
+                <div className="rounded-3xl bg-slate-950 border border-blue-500/20 overflow-hidden">
 
+                    <div className="p-5">
+
+                        <div className="w-full min-h-[430px] max-h-[430px] overflow-y-auto rounded-2xl bg-white border border-blue-500 p-5 text-lg leading-8 font-mono text-black">
+
+                            {renderSourceText()}
+
+                        </div>
+
+                    </div>
+
+                </div>
                 <div className="rounded-3xl bg-slate-950 border border-blue-500/20 p-5">
                     <textarea
                         ref={textareaRef}
@@ -1007,7 +1069,8 @@ export const GCCTBCTest: React.FC<GCCTBCTestProps> = ({
                         onChange={() => { }}
                         autoFocus
                         spellCheck={false}
-                        className="w-full min-h-[430px] resize-none rounded-2xl bg-slate-900 border border-slate-800 p-5 text-lg leading-8 font-serif text-white focus:outline-none"
+                        // className="w-full min-h-[430px] resize-none rounded-2xl bg-slate-900 border border-slate-800 p-5 text-lg leading-8 font-serif text-white focus:outline-none"
+                        className="w-full min-h-[430px] resize-none rounded-2xl bg-white border border-slate-800 p-5 text-lg leading-8 font-mono !text-black caret-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500"
                         style={{
                             fontFamily: "'Mangal', 'Nirmala UI', 'Mukta', 'Arial Unicode MS', sans-serif"
                         }}
