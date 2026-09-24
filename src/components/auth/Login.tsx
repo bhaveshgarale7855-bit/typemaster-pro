@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import TeacherApplicationForm from './TeacherApplicationForm';
 import {
   GraduationCap,
   ShieldCheck,
@@ -42,6 +43,8 @@ export const Login: React.FC<LoginProps> = ({
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const { isPasswordRecovery } = useAuth();
+  const [showTeacherApplication, setShowTeacherApplication] =
+    useState(false);
 
   useEffect(() => {
     const {
@@ -74,8 +77,11 @@ export const Login: React.FC<LoginProps> = ({
     setError('');
     setSuccess('');
 
-    // Admin accounts are login-only.
-    if (newRole === 'admin' && mode === 'signup') {
+    // Teacher and Admin accounts are login-only.
+    if (
+      (newRole === 'teacher' || newRole === 'admin') &&
+      mode === 'signup'
+    ) {
       setMode('login');
     }
   };
@@ -486,6 +492,14 @@ export const Login: React.FC<LoginProps> = ({
     );
   }
 
+  if (showTeacherApplication) {
+    return (
+      <TeacherApplicationForm
+        onBack={() => setShowTeacherApplication(false)}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-6xl grid lg:grid-cols-2 bg-white rounded-3xl shadow-2xl shadow-slate-200/70 overflow-hidden border border-slate-200">
@@ -850,7 +864,7 @@ export const Login: React.FC<LoginProps> = ({
           {/* =========================
               LOGIN / SIGNUP SWITCH
           ========================== */}
-          {role !== 'admin' && (
+          {role === 'student' && (
             <div className="mt-7 text-center">
               <button
                 type="button"
@@ -870,6 +884,25 @@ export const Login: React.FC<LoginProps> = ({
                 {mode === 'login'
                   ? "Don't have an account? Create one"
                   : 'Already have an account? Sign in'}
+              </button>
+            </div>
+          )}
+
+          {role === 'teacher' && mode === 'login' && (
+            <div className="mt-7 text-center">
+              <button
+                type="button"
+                disabled={loading}
+                onClick={() => {
+                  setError('');
+                  setSuccess('');
+                  setShowTeacherApplication(true);
+
+                  // Teacher application form will open here.
+                }}
+                className="text-sm font-bold text-blue-600 hover:text-blue-700 disabled:opacity-50"
+              >
+                New teacher? Apply as Teacher
               </button>
             </div>
           )}
