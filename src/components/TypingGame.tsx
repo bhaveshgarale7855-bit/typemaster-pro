@@ -118,7 +118,7 @@ export const TypingGame: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[500px] p-8 bg-slate-900 text-white rounded-2xl shadow-2xl max-w-2xl mx-auto border border-slate-800">
-      
+
       {/* Title */}
       <h2 className="text-3xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
         TypeMaster Pro
@@ -130,15 +130,14 @@ export const TypingGame: React.FC = () => {
           <button
             key={level}
             onClick={() => resetGame(level)}
-            className={`px-4 py-2 rounded-lg font-semibold capitalize transition-all duration-200 ${
-              difficulty === level
-                ? level === 'easy'
-                  ? 'bg-green-600 text-white shadow-lg shadow-green-600/30'
-                  : level === 'medium'
+            className={`px-4 py-2 rounded-lg font-semibold capitalize transition-all duration-200 ${difficulty === level
+              ? level === 'easy'
+                ? 'bg-green-600 text-white shadow-lg shadow-green-600/30'
+                : level === 'medium'
                   ? 'bg-yellow-600 text-white shadow-lg shadow-yellow-600/30'
                   : 'bg-red-600 text-white shadow-lg shadow-red-600/30'
-                : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
-            }`}
+              : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+              }`}
           >
             {level}
           </button>
@@ -165,7 +164,7 @@ export const TypingGame: React.FC = () => {
       </div>
 
       {/* Display Target Text */}
-      <div className="w-full max-w-lg bg-slate-800 p-5 rounded-xl mb-6 text-lg tracking-wide leading-relaxed font-mono select-none border border-slate-700">
+      <div className="typing-game-input w-full max-w-lg bg-slate-800 p-5 rounded-xl mb-6 text-lg tracking-wide leading-relaxed font-mono select-none border border-slate-700">
         {targetText.split('').map((char, index) => {
           let color = 'text-slate-500';
           if (index < input.length) {
@@ -187,13 +186,15 @@ export const TypingGame: React.FC = () => {
         onChange={handleInputChange}
         disabled={isGameOver}
         placeholder={isGameOver ? "Game Over! Click reset to try again." : "Start typing here..."}
-        className="w-full max-w-lg p-4 rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 mb-6 font-mono text-base transition-all"
+        // className="w-full max-w-lg p-4 rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 mb-6 font-mono text-base transition-all"
+        className="typing-game-input w-full max-w-lg p-4 rounded-xl bg-slate-950 border border-slate-700 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 mb-6 font-mono text-base transition-all"
       />
+
 
       {/* Reset Button */}
       <button
         onClick={() => resetGame(difficulty)}
-        className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl transition font-semibold shadow-lg shadow-blue-600/20 active:scale-95"
+        className="typing-game-input flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl transition font-semibold shadow-lg shadow-blue-600/20 active:scale-95"
       >
         <RefreshCw className="w-5 h-5" /> Reset Game
       </button>

@@ -977,7 +977,8 @@ export const AppProvider: React.FC<{
   const recordTestResult = (
     resultData: Omit<TestResult, 'id' | 'userId' | 'date'>
   ): TestResult => {
-    const newId = `res-${Date.now()}`;
+    // const newId = `res-${Date.now()}`;
+    const newId = `res-${crypto.randomUUID()}`;
 
     const dateStr = new Date()
       .toISOString()

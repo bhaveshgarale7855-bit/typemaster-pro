@@ -2842,7 +2842,7 @@ const TypingGamesView: React.FC = () => {
 
             </div>
 
-            {/* INPUT */}
+            {/* INPUT
             <div className="border-t border-slate-800 mt-4 pt-4">
 
               <input
@@ -2862,475 +2862,503 @@ const TypingGamesView: React.FC = () => {
                     : 'Launch the game to start typing'
                 }
                 className="w-full text-center py-3 px-4 rounded-xl bg-slate-950 border border-slate-700 text-sm font-mono text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
-              />
+              /> */}
+            {/* INPUT */}
+            <div className="border-t border-slate-800 mt-4 pt-4">
 
+              <input
+                ref={invaderInputRef}
+                type="text"
+                disabled={
+                  !invadersActive ||
+                  invaderGameOver
+                }
+                value={invaderInput}
+                onChange={
+                  handleInvaderChange
+                }
+                placeholder={
+                  invadersActive
+                    ? 'Type a falling word...'
+                    : 'Launch the game to start typing'
+                }
+                className="w-full text-center py-3 px-4 rounded-xl bg-slate-950 border-2 border-amber-500/80 !text-amber-300 placeholder-slate-600 text-lg font-mono font-black tracking-widest focus:outline-none focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.2)] drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"
+              />
             </div>
 
           </div>
+
         </div>
-      )}
+      )
+      }
 
       {/* ========================================================
           GAME 2 — SPEED RACER
       ======================================================== */}
 
-      {selectedGame === 'racer' && (
-        <div className="space-y-4">
+      {
+        selectedGame === 'racer' && (
+          <div className="space-y-4">
 
-          <div className="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl space-y-6">
+            <div className="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl space-y-6">
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
 
-              <div>
-                <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  <Car className="w-5 h-5 text-amber-400" />
-                  Speed Racer 3000
-                </h3>
+                <div>
+                  <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                    <Car className="w-5 h-5 text-amber-400" />
+                    Speed Racer 3000
+                  </h3>
 
-                <p className="text-xs text-slate-400 mt-1">
-                  Complete 25 words and race
-                  against two AI challengers.
-                </p>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Complete 25 words and race
+                    against two AI challengers.
+                  </p>
+                </div>
+
+                {!racerActive &&
+                  !racerFinished && (
+                    <button
+                      onClick={
+                        startRacerGame
+                      }
+                      className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-lg shadow-amber-500/20"
+                    >
+                      <Play className="w-4 h-4 fill-current" />
+                      Start Grand Prix
+                    </button>
+                  )}
+
               </div>
 
-              {!racerActive &&
+              {/* RACE LANES */}
+              <div className="space-y-4 bg-slate-950 p-4 rounded-2xl border border-slate-800">
+
+                {/* PLAYER */}
+                <div>
+
+                  <div className="flex justify-between text-xs text-slate-400 mb-1">
+                    <span className="font-bold text-emerald-400">
+                      🏎️ You
+                    </span>
+
+                    <span className="font-mono">
+                      {racerPlayerProgress}%
+                    </span>
+                  </div>
+
+                  <div className="relative w-full h-9 bg-slate-900 rounded-lg overflow-hidden border border-slate-800">
+
+                    <div
+                      className="absolute inset-y-0 left-0 bg-emerald-500/20 border-r-2 border-emerald-400 transition-all duration-300"
+                      style={{
+                        width: `${racerPlayerProgress}%`,
+                      }}
+                    />
+
+                    <div
+                      className="absolute top-1 text-lg transition-all duration-300 -translate-x-1/2"
+                      style={{
+                        left: `${Math.max(
+                          5,
+                          Math.min(
+                            95,
+                            racerPlayerProgress
+                          )
+                        )}%`,
+                      }}
+                    >
+                      🚗
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* TURBO BOT */}
+                <div>
+
+                  <div className="flex justify-between text-xs text-slate-400 mb-1">
+                    <span className="font-semibold text-cyan-400">
+                      🚙 Turbo Bot
+                    </span>
+
+                    <span className="font-mono">
+                      {Math.round(
+                        racerBot1Progress
+                      )}
+                      %
+                    </span>
+                  </div>
+
+                  <div className="relative w-full h-9 bg-slate-900 rounded-lg overflow-hidden border border-slate-800">
+
+                    <div
+                      className="absolute inset-y-0 left-0 bg-cyan-500/20 border-r-2 border-cyan-400 transition-all duration-300"
+                      style={{
+                        width: `${racerBot1Progress}%`,
+                      }}
+                    />
+
+                    <div
+                      className="absolute top-1 text-lg transition-all duration-300 -translate-x-1/2"
+                      style={{
+                        left: `${Math.max(
+                          5,
+                          Math.min(
+                            95,
+                            racerBot1Progress
+                          )
+                        )}%`,
+                      }}
+                    >
+                      🚙
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* CYBER BOT */}
+                <div>
+
+                  <div className="flex justify-between text-xs text-slate-400 mb-1">
+                    <span className="font-semibold text-purple-400">
+                      🏎️ Cyber Bot
+                    </span>
+
+                    <span className="font-mono">
+                      {Math.round(
+                        racerBot2Progress
+                      )}
+                      %
+                    </span>
+                  </div>
+
+                  <div className="relative w-full h-9 bg-slate-900 rounded-lg overflow-hidden border border-slate-800">
+
+                    <div
+                      className="absolute inset-y-0 left-0 bg-purple-500/20 border-r-2 border-purple-400 transition-all duration-300"
+                      style={{
+                        width: `${racerBot2Progress}%`,
+                      }}
+                    />
+
+                    <div
+                      className="absolute top-1 text-lg transition-all duration-300 -translate-x-1/2"
+                      style={{
+                        left: `${Math.max(
+                          5,
+                          Math.min(
+                            95,
+                            racerBot2Progress
+                          )
+                        )}%`,
+                      }}
+                    >
+                      🏎️
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+              {/* TYPING AREA */}
+              {racerActive &&
                 !racerFinished && (
+                  <div className="space-y-4 p-5 rounded-2xl bg-slate-950/80 border border-slate-800">
+
+                    <div className="flex items-center justify-between gap-3">
+
+                      <span className="text-xs text-slate-500">
+                        Word{' '}
+                        {Math.min(
+                          racerWordIndex + 1,
+                          25
+                        )}{' '}
+                        / 25
+                      </span>
+
+                      <span className="text-xs font-bold text-amber-400">
+                        {racerPlayerProgress}%
+                        complete
+                      </span>
+
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 text-sm sm:text-base font-mono max-h-32 overflow-hidden">
+
+                      {racerWords.map(
+                        (word, index) => {
+                          const isDone =
+                            index <
+                            racerWordIndex;
+
+                          const isCurrent =
+                            index ===
+                            racerWordIndex;
+
+                          return (
+                            <span
+                              key={`${word}-${index}`}
+                              className={`px-2 py-1 rounded ${isDone
+                                ? 'text-emerald-400 line-through'
+                                : isCurrent
+                                  ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/50'
+                                  : 'text-slate-600'
+                                }`}
+                            >
+                              {word}
+                            </span>
+                          );
+                        }
+                      )}
+
+                    </div>
+
+                    <input
+                      type="text"
+                      autoFocus
+                      value={racerInput}
+                      onChange={
+                        handleRacerInputChange
+                      }
+                      placeholder="Type the highlighted word + SPACE"
+                      // className="w-full py-3 px-4 rounded-xl bg-slate-900 border border-slate-700 text-sm font-mono text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full text-center py-3 px-4 rounded-xl bg-slate-950 border-2 border-emerald-500/80 !text-emerald-300 placeholder-slate-600 text-lg font-mono font-black tracking-widest focus:outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.2)] drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]"
+                    />
+
+                  </div>
+                )}
+
+              {/* RESULT */}
+              {racerFinished && (
+                <div className="p-6 rounded-2xl bg-slate-950/80 border border-slate-800 text-center space-y-3">
+
+                  <Trophy className="w-10 h-10 text-amber-400 mx-auto" />
+
+                  <h4 className="text-xl font-bold text-white">
+                    Race Completed!
+                  </h4>
+
+                  <p className="text-xs text-slate-400">
+                    Winner:{' '}
+                    <strong className="text-amber-400 font-bold">
+                      {racerWinner}
+                    </strong>
+                  </p>
+
                   <button
                     onClick={
                       startRacerGame
                     }
-                    className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-lg shadow-amber-500/20"
+                    className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs"
                   >
-                    <Play className="w-4 h-4 fill-current" />
-                    Start Grand Prix
+                    Race Again
                   </button>
-                )}
-
-            </div>
-
-            {/* RACE LANES */}
-            <div className="space-y-4 bg-slate-950 p-4 rounded-2xl border border-slate-800">
-
-              {/* PLAYER */}
-              <div>
-
-                <div className="flex justify-between text-xs text-slate-400 mb-1">
-                  <span className="font-bold text-emerald-400">
-                    🏎️ You
-                  </span>
-
-                  <span className="font-mono">
-                    {racerPlayerProgress}%
-                  </span>
-                </div>
-
-                <div className="relative w-full h-9 bg-slate-900 rounded-lg overflow-hidden border border-slate-800">
-
-                  <div
-                    className="absolute inset-y-0 left-0 bg-emerald-500/20 border-r-2 border-emerald-400 transition-all duration-300"
-                    style={{
-                      width: `${racerPlayerProgress}%`,
-                    }}
-                  />
-
-                  <div
-                    className="absolute top-1 text-lg transition-all duration-300 -translate-x-1/2"
-                    style={{
-                      left: `${Math.max(
-                        5,
-                        Math.min(
-                          95,
-                          racerPlayerProgress
-                        )
-                      )}%`,
-                    }}
-                  >
-                    🚗
-                  </div>
-
-                </div>
-              </div>
-
-              {/* TURBO BOT */}
-              <div>
-
-                <div className="flex justify-between text-xs text-slate-400 mb-1">
-                  <span className="font-semibold text-cyan-400">
-                    🚙 Turbo Bot
-                  </span>
-
-                  <span className="font-mono">
-                    {Math.round(
-                      racerBot1Progress
-                    )}
-                    %
-                  </span>
-                </div>
-
-                <div className="relative w-full h-9 bg-slate-900 rounded-lg overflow-hidden border border-slate-800">
-
-                  <div
-                    className="absolute inset-y-0 left-0 bg-cyan-500/20 border-r-2 border-cyan-400 transition-all duration-300"
-                    style={{
-                      width: `${racerBot1Progress}%`,
-                    }}
-                  />
-
-                  <div
-                    className="absolute top-1 text-lg transition-all duration-300 -translate-x-1/2"
-                    style={{
-                      left: `${Math.max(
-                        5,
-                        Math.min(
-                          95,
-                          racerBot1Progress
-                        )
-                      )}%`,
-                    }}
-                  >
-                    🚙
-                  </div>
-
-                </div>
-              </div>
-
-              {/* CYBER BOT */}
-              <div>
-
-                <div className="flex justify-between text-xs text-slate-400 mb-1">
-                  <span className="font-semibold text-purple-400">
-                    🏎️ Cyber Bot
-                  </span>
-
-                  <span className="font-mono">
-                    {Math.round(
-                      racerBot2Progress
-                    )}
-                    %
-                  </span>
-                </div>
-
-                <div className="relative w-full h-9 bg-slate-900 rounded-lg overflow-hidden border border-slate-800">
-
-                  <div
-                    className="absolute inset-y-0 left-0 bg-purple-500/20 border-r-2 border-purple-400 transition-all duration-300"
-                    style={{
-                      width: `${racerBot2Progress}%`,
-                    }}
-                  />
-
-                  <div
-                    className="absolute top-1 text-lg transition-all duration-300 -translate-x-1/2"
-                    style={{
-                      left: `${Math.max(
-                        5,
-                        Math.min(
-                          95,
-                          racerBot2Progress
-                        )
-                      )}%`,
-                    }}
-                  >
-                    🏎️
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-            {/* TYPING AREA */}
-            {racerActive &&
-              !racerFinished && (
-                <div className="space-y-4 p-5 rounded-2xl bg-slate-950/80 border border-slate-800">
-
-                  <div className="flex items-center justify-between gap-3">
-
-                    <span className="text-xs text-slate-500">
-                      Word{' '}
-                      {Math.min(
-                        racerWordIndex + 1,
-                        25
-                      )}{' '}
-                      / 25
-                    </span>
-
-                    <span className="text-xs font-bold text-amber-400">
-                      {racerPlayerProgress}%
-                      complete
-                    </span>
-
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 text-sm sm:text-base font-mono max-h-32 overflow-hidden">
-
-                    {racerWords.map(
-                      (word, index) => {
-                        const isDone =
-                          index <
-                          racerWordIndex;
-
-                        const isCurrent =
-                          index ===
-                          racerWordIndex;
-
-                        return (
-                          <span
-                            key={`${word}-${index}`}
-                            className={`px-2 py-1 rounded ${isDone
-                              ? 'text-emerald-400 line-through'
-                              : isCurrent
-                                ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/50'
-                                : 'text-slate-600'
-                              }`}
-                          >
-                            {word}
-                          </span>
-                        );
-                      }
-                    )}
-
-                  </div>
-
-                  <input
-                    type="text"
-                    autoFocus
-                    value={racerInput}
-                    onChange={
-                      handleRacerInputChange
-                    }
-                    placeholder="Type the highlighted word + SPACE"
-                    className="w-full py-3 px-4 rounded-xl bg-slate-900 border border-slate-700 text-sm font-mono text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
-                  />
 
                 </div>
               )}
 
-            {/* RESULT */}
-            {racerFinished && (
-              <div className="p-6 rounded-2xl bg-slate-950/80 border border-slate-800 text-center space-y-3">
-
-                <Trophy className="w-10 h-10 text-amber-400 mx-auto" />
-
-                <h4 className="text-xl font-bold text-white">
-                  Race Completed!
-                </h4>
-
-                <p className="text-xs text-slate-400">
-                  Winner:{' '}
-                  <strong className="text-amber-400 font-bold">
-                    {racerWinner}
-                  </strong>
-                </p>
-
-                <button
-                  onClick={
-                    startRacerGame
-                  }
-                  className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs"
-                >
-                  Race Again
-                </button>
-
-              </div>
-            )}
-
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       {/* ========================================================
           GAME 3 — WORD RUSH
       ======================================================== */}
 
-      {selectedGame === 'rush' && (
-        <div className="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl">
+      {
+        selectedGame === 'rush' && (
+          <div className="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl">
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
 
-            <div>
-              <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <Zap className="w-5 h-5 text-orange-400" />
-                Word Rush
-              </h3>
-
-              <p className="text-xs text-slate-400 mt-1">
-                You have 60 seconds. Type target
-                words as quickly and accurately
-                as possible.
-              </p>
-            </div>
-
-            {!rushActive &&
-              !rushOver && (
-                <button
-                  onClick={
-                    startRushGame
-                  }
-                  className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-400 text-slate-950 font-bold text-xs shadow-lg shadow-orange-500/20"
-                >
-                  <Play className="w-4 h-4 fill-current" />
-                  Start Word Rush
-                </button>
-              )}
-
-          </div>
-
-
-          {/* STATS */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-
-            <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800">
-              <span className="text-[10px] uppercase tracking-wider text-slate-500">
-                Time
-              </span>
-
-              <div className="text-lg font-black font-mono text-orange-400 mt-1">
-                {rushTime}s
-              </div>
-            </div>
-
-            <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800">
-              <span className="text-[10px] uppercase tracking-wider text-slate-500">
-                Score
-              </span>
-
-              <div className="text-lg font-black font-mono text-amber-400 mt-1">
-                {rushScore}
-              </div>
-            </div>
-
-            <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800">
-              <span className="text-[10px] uppercase tracking-wider text-slate-500">
-                Words
-              </span>
-
-              <div className="text-lg font-black font-mono text-cyan-400 mt-1">
-                {rushWordsTyped}
-              </div>
-            </div>
-
-            <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800">
-              <span className="text-[10px] uppercase tracking-wider text-slate-500">
-                Combo
-              </span>
-
-              <div className="text-lg font-black font-mono text-purple-400 mt-1 flex items-center gap-1">
-                <Flame className="w-4 h-4" />
-                {rushCombo}x
-              </div>
-            </div>
-
-          </div>
-
-          {/* GAME AREA */}
-          <div className="min-h-[340px] rounded-3xl bg-slate-950 border border-slate-800 flex flex-col items-center justify-center p-6">
-
-            {rushActive ? (
-              <>
-                <div className="flex items-center gap-2 text-xs text-slate-500 uppercase tracking-[0.2em] mb-4">
-                  <Target className="w-4 h-4 text-orange-400" />
-                  Type this word
-                </div>
-
-                <div className="text-4xl sm:text-6xl font-black font-mono text-orange-300 tracking-wider mb-8 text-center break-all">
-                  {rushTarget}
-                </div>
-
-                <div className="w-full max-w-xl">
-
-                  <input
-                    ref={rushInputRef}
-                    type="text"
-                    autoFocus
-                    value={rushInput}
-                    onChange={
-                      handleRushInput
-                    }
-                    placeholder="Type word + SPACE..."
-                    className="w-full text-center py-4 px-5 rounded-2xl bg-slate-900 border border-slate-700 text-base font-mono text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  />
-
-                </div>
-
-                <div className="flex items-center gap-4 mt-5 text-xs text-slate-500">
-
-                  <span className="flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                    Correct: {rushCorrect}
-                  </span>
-
-                  <span>
-                    Errors: {rushMistakes}
-                  </span>
-
-                </div>
-              </>
-            ) : rushOver ? (
-              <div className="text-center">
-
-                <Trophy className="w-12 h-12 text-amber-400 mx-auto mb-3" />
-
-                <h3 className="text-2xl font-black text-white">
-                  Word Rush Complete!
-                </h3>
-
-                <p className="text-sm text-slate-400 mt-2">
-                  Final Score:{' '}
-                  <strong className="text-amber-400">
-                    {rushScore}
-                  </strong>
-                </p>
-
-                <p className="text-xs text-slate-500 mt-1">
-                  {rushWordsTyped} words •{' '}
-                  {rushCorrect} correct •{' '}
-                  {rushMistakes} errors
-                </p>
-
-                <button
-                  onClick={
-                    startRushGame
-                  }
-                  className="mt-5 flex items-center gap-2 mx-auto px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-400 text-slate-950 font-bold text-xs"
-                >
-                  <RotateCcw className="w-4 h-4" />
-                  Play Again
-                </button>
-
-              </div>
-            ) : (
-              <div className="text-center">
-
-                <div className="p-4 rounded-2xl bg-orange-500/10 text-orange-400 border border-orange-500/20 w-fit mx-auto mb-4">
-                  <Zap className="w-10 h-10" />
-                </div>
-
-                <h3 className="text-xl font-black text-white">
+              <div>
+                <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-orange-400" />
                   Word Rush
                 </h3>
 
-                <p className="text-xs text-slate-400 max-w-sm mt-2">
-                  Type as many target words as
-                  possible in 60 seconds.
+                <p className="text-xs text-slate-400 mt-1">
+                  You have 60 seconds. Type target
+                  words as quickly and accurately
+                  as possible.
                 </p>
-
-                <button
-                  onClick={
-                    startRushGame
-                  }
-                  className="mt-5 flex items-center gap-2 mx-auto px-6 py-3 rounded-2xl bg-orange-500 hover:bg-orange-400 text-slate-950 font-black text-sm"
-                >
-                  <Play className="w-4 h-4 fill-current" />
-                  Start Word Rush
-                </button>
-
               </div>
-            )}
 
+              {!rushActive &&
+                !rushOver && (
+                  <button
+                    onClick={
+                      startRushGame
+                    }
+                    className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-400 text-slate-950 font-bold text-xs shadow-lg shadow-orange-500/20"
+                  >
+                    <Play className="w-4 h-4 fill-current" />
+                    Start Word Rush
+                  </button>
+                )}
+
+            </div>
+
+
+            {/* STATS */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+
+              <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800">
+                <span className="text-[10px] uppercase tracking-wider text-slate-500">
+                  Time
+                </span>
+
+                <div className="text-lg font-black font-mono text-orange-400 mt-1">
+                  {rushTime}s
+                </div>
+              </div>
+
+              <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800">
+                <span className="text-[10px] uppercase tracking-wider text-slate-500">
+                  Score
+                </span>
+
+                <div className="text-lg font-black font-mono text-amber-400 mt-1">
+                  {rushScore}
+                </div>
+              </div>
+
+              <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800">
+                <span className="text-[10px] uppercase tracking-wider text-slate-500">
+                  Words
+                </span>
+
+                <div className="text-lg font-black font-mono text-cyan-400 mt-1">
+                  {rushWordsTyped}
+                </div>
+              </div>
+
+              <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800">
+                <span className="text-[10px] uppercase tracking-wider text-slate-500">
+                  Combo
+                </span>
+
+                <div className="text-lg font-black font-mono text-purple-400 mt-1 flex items-center gap-1">
+                  <Flame className="w-4 h-4" />
+                  {rushCombo}x
+                </div>
+              </div>
+
+            </div>
+
+            {/* GAME AREA */}
+            <div className="min-h-[340px] rounded-3xl bg-slate-950 border border-slate-800 flex flex-col items-center justify-center p-6">
+
+              {rushActive ? (
+                <>
+                  <div className="flex items-center gap-2 text-xs text-slate-500 uppercase tracking-[0.2em] mb-4">
+                    <Target className="w-4 h-4 text-orange-400" />
+                    Type this word
+                  </div>
+
+                  <div className="text-4xl sm:text-6xl font-black font-mono text-orange-300 tracking-wider mb-8 text-center break-all">
+                    {rushTarget}
+                  </div>
+
+                  <div className="w-full max-w-xl">
+
+                    <input
+                      ref={rushInputRef}
+                      type="text"
+                      autoFocus
+                      value={rushInput}
+                      onChange={
+                        handleRushInput
+                      }
+                      placeholder="Type word + SPACE..."
+                      // className="w-full text-center py-4 px-5 rounded-2xl bg-slate-900 border border-slate-700 text-base font-mono text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full text-center py-3 px-4 rounded-xl bg-slate-950 border-2 border-cyan-500/80 !text-cyan-300 placeholder-slate-600 text-lg font-mono font-black tracking-widest focus:outline-none focus:border-cyan-400 focus:ring-4 focus:ring-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.2)] drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]"
+                    />
+
+                  </div>
+
+                  <div className="flex items-center gap-4 mt-5 text-xs text-slate-500">
+
+                    <span className="flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      Correct: {rushCorrect}
+                    </span>
+
+                    <span>
+                      Errors: {rushMistakes}
+                    </span>
+
+                  </div>
+                </>
+              ) : rushOver ? (
+                <div className="text-center">
+
+                  <Trophy className="w-12 h-12 text-amber-400 mx-auto mb-3" />
+
+                  <h3 className="text-2xl font-black text-white">
+                    Word Rush Complete!
+                  </h3>
+
+                  <p className="text-sm text-slate-400 mt-2">
+                    Final Score:{' '}
+                    <strong className="text-amber-400">
+                      {rushScore}
+                    </strong>
+                  </p>
+
+                  <p className="text-xs text-slate-500 mt-1">
+                    {rushWordsTyped} words •{' '}
+                    {rushCorrect} correct •{' '}
+                    {rushMistakes} errors
+                  </p>
+
+                  <button
+                    onClick={
+                      startRushGame
+                    }
+                    className="mt-5 flex items-center gap-2 mx-auto px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-400 text-slate-950 font-bold text-xs"
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                    Play Again
+                  </button>
+
+                </div>
+              ) : (
+                <div className="text-center">
+
+                  <div className="p-4 rounded-2xl bg-orange-500/10 text-orange-400 border border-orange-500/20 w-fit mx-auto mb-4">
+                    <Zap className="w-10 h-10" />
+                  </div>
+
+                  <h3 className="text-xl font-black text-white">
+                    Word Rush
+                  </h3>
+
+                  <p className="text-xs text-slate-400 max-w-sm mt-2">
+                    Type as many target words as
+                    possible in 60 seconds.
+                  </p>
+
+                  <button
+                    onClick={
+                      startRushGame
+                    }
+                    className="mt-5 flex items-center gap-2 mx-auto px-6 py-3 rounded-2xl bg-orange-500 hover:bg-orange-400 text-slate-950 font-black text-sm"
+                  >
+                    <Play className="w-4 h-4 fill-current" />
+                    Start Word Rush
+                  </button>
+
+                </div>
+              )}
+
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
 
       {/* FOOTER */}
@@ -3357,7 +3385,7 @@ const TypingGamesView: React.FC = () => {
         </div>
       </div>
 
-    </div>
+    </div >
   );
 };
 

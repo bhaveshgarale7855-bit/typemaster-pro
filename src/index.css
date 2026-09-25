@@ -464,13 +464,36 @@ html[data-theme="dark"] input,
 html[data-theme="dark"] textarea,
 html[data-theme="dark"] select {
   background-color: var(--tm-surface) !important;
-  color: var(--tm-text) !important;
+  /* color: var(--tm-text) !important; */
   border-color: var(--tm-border) !important;
 }
 
 html[data-theme="dark"] input::placeholder,
 html[data-theme="dark"] textarea::placeholder {
-  color: var(--tm-text-muted) !important;
+  /* color: var(--tm-text-muted) !important; */
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   TYPING GAME INPUT - ALWAYS WHITE TEXT
+   ========================================================= */
+
+html[data-theme="dark"] .typing-game-input {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+
+html[data-theme="light"] .typing-game-input,
+.typing-game-input {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+
+.typing-game-input::placeholder {
+  color: #64748b !important;
+  -webkit-text-fill-color: #64748b !important;
 }
 
 /* =========================================================
