@@ -3276,6 +3276,7 @@ const TypingGamesView: React.FC = () => {
                       placeholder="Type word + SPACE..."
                       // className="w-full text-center py-4 px-5 rounded-2xl bg-slate-900 border border-slate-700 text-base font-mono text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500"
                       className="w-full text-center py-3 px-4 rounded-xl bg-slate-950 border-2 border-cyan-500/80 !text-cyan-300 placeholder-slate-600 text-lg font-mono font-black tracking-widest focus:outline-none focus:border-cyan-400 focus:ring-4 focus:ring-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.2)] drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]"
+                      
                     />
 
                   </div>
