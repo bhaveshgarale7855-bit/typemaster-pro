@@ -449,7 +449,7 @@ export const AppProvider: React.FC<{
       'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
     role: 'admin',
     institution:
-      'TypeMaster Academy of Computer Science',
+      'KeyPM Academy of Computer Science',
     activeBatchesCount: 3,
     totalStudentsCount: 56
   });
@@ -472,14 +472,24 @@ export const AppProvider: React.FC<{
   });
 
   const [lessons, setLessons] = useState<Lesson[]>(() => {
-    const saved = localStorage.getItem(
-      `${LOCAL_STORAGE_KEY}_lessons`
-    );
+    const saved = localStorage.getItem(`${LOCAL_STORAGE_KEY}_lessons`);
 
     if (saved) {
       try {
-        return JSON.parse(saved);
-      } catch { }
+        const parsed = JSON.parse(saved) as Lesson[];
+        const savedIds = new Set(
+          parsed.map((lesson) => lesson.id)
+        );
+
+        return [
+          ...parsed,
+          ...INITIAL_LESSONS.filter(
+            (lesson) => !savedIds.has(lesson.id)
+          ),
+        ];
+      } catch {
+        return INITIAL_LESSONS;
+      }
     }
 
     return INITIAL_LESSONS;

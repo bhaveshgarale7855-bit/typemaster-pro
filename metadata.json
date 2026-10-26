@@ -1,5 +1,5 @@
 {
-  "name": "TypeMaster Pro",
+  "name": "KeyPM",
   "description": "Comprehensive interactive typing learning platform with lessons, tests, games, analytics, error tracking, and teacher/admin management.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

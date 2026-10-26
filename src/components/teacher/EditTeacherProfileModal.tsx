@@ -339,7 +339,7 @@ export const EditTeacherProfileModal: React.FC<
                   type="text"
                   value={
                     teacher.institution ||
-                    'TypeMaster Academy'
+                    'KeyPM Academy'
                   }
                   readOnly
                   className="h-11 w-full cursor-not-allowed rounded-xl border border-slate-200 bg-slate-50 pl-10 pr-3 text-sm text-slate-500 outline-none"

@@ -1008,7 +1008,7 @@ export const TeacherManagementView: React.FC = () => {
 
             <p className="mt-2 max-w-2xl text-sm leading-6 text-blue-100/75 sm:text-base">
               Manage authorized teachers, teacher accounts,
-              and access to the TypeMaster Pro instructor portal.
+              and access to the KeyPM instructor portal.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">

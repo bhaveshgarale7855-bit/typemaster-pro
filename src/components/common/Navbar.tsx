@@ -205,9 +205,9 @@ export const Navbar: React.FC = () => {
               <div>
                 <div className="flex items-center gap-2">
                   <span className="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900">
-                    TypeMaster
+                    Key
                     <span className="text-blue-600 font-black">
-                      Pro
+                      PM
                     </span>
                   </span>
 
@@ -348,11 +348,10 @@ export const Navbar: React.FC = () => {
                     setShowProfileMenu(false);
                   }}
                   title="Typing Sound Settings"
-                  className={`p-2 rounded-lg border transition-all ${
-                    soundEnabled
+                  className={`p-2 rounded-lg border transition-all ${soundEnabled
                       ? 'bg-blue-50 border-blue-200 text-blue-600 hover:border-blue-300'
                       : 'bg-slate-50 border-slate-200 text-slate-400 hover:text-slate-600 hover:border-slate-300'
-                  }`}
+                    }`}
                 >
                   {soundEnabled ? (
                     <Volume2 className="w-4 h-4" />
@@ -372,11 +371,10 @@ export const Navbar: React.FC = () => {
 
                       <button
                         onClick={toggleSound}
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded ${
-                          soundEnabled
+                        className={`text-[10px] font-bold px-2 py-0.5 rounded ${soundEnabled
                             ? 'bg-blue-50 text-blue-600'
                             : 'bg-slate-100 text-slate-500'
-                        }`}
+                          }`}
                       >
                         {soundEnabled
                           ? 'ON'
@@ -399,12 +397,11 @@ export const Navbar: React.FC = () => {
 
                           setShowSoundMenu(false);
                         }}
-                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between ${
-                          soundType ===
-                          'cherry-blue'
+                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between ${soundType ===
+                            'cherry-blue'
                             ? 'bg-blue-50 text-blue-600 font-medium'
                             : 'text-slate-600 hover:bg-slate-50'
-                        }`}
+                          }`}
                       >
                         <span>
                           Mechanical Click (Blue)
@@ -424,12 +421,11 @@ export const Navbar: React.FC = () => {
 
                           setShowSoundMenu(false);
                         }}
-                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between ${
-                          soundType ===
-                          'cherry-brown'
+                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between ${soundType ===
+                            'cherry-brown'
                             ? 'bg-blue-50 text-blue-600 font-medium'
                             : 'text-slate-600 hover:bg-slate-50'
-                        }`}
+                          }`}
                       >
                         <span>
                           Tactile Soft (Brown)
@@ -525,11 +521,10 @@ export const Navbar: React.FC = () => {
                                     notif.id
                                   )
                                 }
-                                className={`p-3 rounded-lg border text-left cursor-pointer ${
-                                  notif.read
+                                className={`p-3 rounded-lg border text-left cursor-pointer ${notif.read
                                     ? 'bg-slate-50 border-slate-200 text-slate-500'
                                     : 'bg-blue-50 border-blue-100 text-slate-800'
-                                }`}
+                                  }`}
                               >
                                 <div className="flex items-start justify-between gap-2">
 
@@ -658,7 +653,7 @@ export const Navbar: React.FC = () => {
                               {currentRole ===
                                 'student'
                                 ? user?.email ||
-                                  student.email
+                                student.email
                                 : staffEmail}
                             </p>
 
@@ -1045,7 +1040,7 @@ export const Navbar: React.FC = () => {
                       {currentRole ===
                         'student'
                         ? user?.email ||
-                          student.email
+                        student.email
                         : staffEmail}
                     </p>
 

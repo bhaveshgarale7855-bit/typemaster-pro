@@ -398,14 +398,15 @@ const MainLayout: React.FC = () => {
       <nav className="border-b border-slate-200 bg-white sticky top-16 z-40 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="flex items-center gap-1 sm:gap-2 py-2.5">
+          {/* <div className="flex items-center gap-1 sm:gap-2 py-2.5"> */}
+          <div className="flex items-center gap-1 sm:gap-2 py-2.5 flex-wrap">
 
             {isStudentArea ? (
               <>
                 {/* Student Navigation */}
 
-                <div className="flex items-center gap-1 sm:gap-2 flex-1 min-w-0">
-
+                {/* <div className="flex items-center gap-1 sm:gap-2 flex-1 min-w-0"> */}
+                <div className="flex items-center gap-1 sm:gap-2 flex-1 min-w-0 overflow-x-auto md:overflow-visible">
                   {studentNavItems.map((item) => {
                     const Icon = item.icon;
                     const isActive =
@@ -418,7 +419,7 @@ const MainLayout: React.FC = () => {
                         onClick={() =>
                           setStudentTab(item.id)
                         }
-                        className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${isActive
+                        className={`flex items-center gap-1.5 md:gap-2 px-2 md:px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${isActive
                           ? 'bg-blue-600 text-white font-bold shadow-sm shadow-blue-600/20'
                           : 'text-slate-600 hover:text-blue-700 hover:bg-blue-50'
                           }`}
@@ -828,7 +829,7 @@ const MainLayout: React.FC = () => {
               'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
             institution:
               teacher?.institution ||
-              'TypeMaster Academy',
+              'KeyPM Academy',
           }}
           onClose={() =>
             setShowTeacherEditProfile(false)
@@ -861,7 +862,7 @@ const MainLayout: React.FC = () => {
 
           <div className="flex items-center gap-2">
             <span className="font-bold text-slate-700">
-              TypeMaster Pro
+              KeyPM
             </span>
 
             <span>•</span>
@@ -891,43 +892,6 @@ const MainLayout: React.FC = () => {
   );
 };
 
-// const AppContent: React.FC = () => {
-//   const {
-//     session,
-//     loading,
-//     isPasswordRecovery,
-//   } = useAuth();
-
-//   if (loading) {
-//     return (
-//       <div className="min-h-screen flex items-center justify-center bg-slate-50">
-//         <div className="text-center">
-//           <div className="w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4" />
-//           <p className="text-sm font-semibold text-slate-600">
-//             Loading TypeMaster Pro...
-//           </p>
-//         </div>
-//       </div>
-//     );
-//   }
-
-//   // Password reset flow must stay on Login screen
-//   if (!session || isPasswordRecovery) {
-//     return <Login />;
-//   }
-
-//   return <MainLayout />;
-// };
-
-// export default function App() {
-//   return (
-//     <AuthProvider>
-//       <AppProvider>
-//         <MainLayout />
-//       </AppProvider>
-//     </AuthProvider>
-//   );
-// }
 
 
 

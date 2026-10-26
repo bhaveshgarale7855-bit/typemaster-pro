@@ -1,242 +1,3 @@
-// import React from 'react';
-// import {
-//   Volume2,
-//   Bell,
-//   Palette,
-//   Keyboard,
-//   User,
-//   Shield,
-//   ChevronRight,
-// } from 'lucide-react';
-// import { useApp } from '../../context/AppContext';
-
-// interface TeacherSettingsViewProps {
-//   onClose?: () => void;
-// }
-
-// export const TeacherSettingsView: React.FC<TeacherSettingsViewProps> = ({
-//   onClose,
-// }) => {
-//   const { teacher, soundEnabled, toggleSound } = useApp();
-
-//   return (
-//     <div className="min-h-[calc(100vh-80px)] bg-slate-50 p-4 sm:p-6 lg:p-8">
-//       <div className="mx-auto max-w-4xl">
-//         <div className="mb-6">
-//           <div className="flex items-center justify-between gap-4">
-//             <div>
-//               <h1 className="text-2xl font-bold text-slate-900">
-//                 Settings
-//               </h1>
-//               <p className="mt-1 text-sm text-slate-500">
-//                 Manage your TypeMaster Pro teacher preferences.
-//               </p>
-//             </div>
-
-//             {onClose && (
-//               <button
-//                 onClick={onClose}
-//                 className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
-//               >
-//                 Back
-//               </button>
-//             )}
-//           </div>
-//         </div>
-
-//         <div className="space-y-5">
-//           <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-//             <div className="border-b border-slate-100 px-5 py-4">
-//               <h2 className="font-bold text-slate-900">Preferences</h2>
-//               <p className="text-sm text-slate-500">
-//                 Control how the application behaves.
-//               </p>
-//             </div>
-
-//             <div className="divide-y divide-slate-100">
-//               <div className="flex items-center justify-between gap-4 px-5 py-4">
-//                 <div className="flex items-center gap-3">
-//                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-//                     <Volume2 size={20} />
-//                   </div>
-
-//                   <div>
-//                     <p className="font-semibold text-slate-900">
-//                       Sound Effects
-//                     </p>
-//                     <p className="text-sm text-slate-500">
-//                       Play sounds during typing activities.
-//                     </p>
-//                   </div>
-//                 </div>
-
-//                 <button
-//                   onClick={toggleSound}
-//                   aria-label="Toggle sound"
-//                   className={`relative h-7 w-12 rounded-full transition ${
-//                     soundEnabled ? 'bg-blue-600' : 'bg-slate-300'
-//                   }`}
-//                 >
-//                   <span
-//                     className={`absolute top-1 h-5 w-5 rounded-full bg-white shadow-sm transition ${
-//                       soundEnabled ? 'left-6' : 'left-1'
-//                     }`}
-//                   />
-//                 </button>
-//               </div>
-
-//               <button
-//                 type="button"
-//                 className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-slate-50"
-//               >
-//                 <div className="flex items-center gap-3">
-//                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
-//                     <Bell size={20} />
-//                   </div>
-
-//                   <div>
-//                     <p className="font-semibold text-slate-900">
-//                       Notifications
-//                     </p>
-//                     <p className="text-sm text-slate-500">
-//                       Notification preferences.
-//                     </p>
-//                   </div>
-//                 </div>
-
-//                 <ChevronRight size={19} className="text-slate-400" />
-//               </button>
-
-//               <button
-//                 type="button"
-//                 className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-slate-50"
-//               >
-//                 <div className="flex items-center gap-3">
-//                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600">
-//                     <Palette size={20} />
-//                   </div>
-
-//                   <div>
-//                     <p className="font-semibold text-slate-900">
-//                       Appearance
-//                     </p>
-//                     <p className="text-sm text-slate-500">
-//                       Choose how TypeMaster Pro looks.
-//                     </p>
-//                   </div>
-//                 </div>
-
-//                 <span className="text-xs font-semibold text-slate-400">
-//                   Coming soon
-//                 </span>
-//               </button>
-
-//               <button
-//                 type="button"
-//                 className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-slate-50"
-//               >
-//                 <div className="flex items-center gap-3">
-//                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
-//                     <Keyboard size={20} />
-//                   </div>
-
-//                   <div>
-//                     <p className="font-semibold text-slate-900">
-//                       Typing Preferences
-//                     </p>
-//                     <p className="text-sm text-slate-500">
-//                       Configure typing practice preferences.
-//                     </p>
-//                   </div>
-//                 </div>
-
-//                 <span className="text-xs font-semibold text-slate-400">
-//                   Coming soon
-//                 </span>
-//               </button>
-//             </div>
-//           </section>
-
-//           <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-//             <div className="border-b border-slate-100 px-5 py-4">
-//               <h2 className="font-bold text-slate-900">Account</h2>
-//               <p className="text-sm text-slate-500">
-//                 Your current teacher account information.
-//               </p>
-//             </div>
-
-//             <div className="divide-y divide-slate-100">
-//               <div className="flex items-center gap-3 px-5 py-4">
-//                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600">
-//                   <User size={20} />
-//                 </div>
-
-//                 <div>
-//                   <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
-//                     Name
-//                   </p>
-//                   <p className="font-semibold text-slate-900">
-//                     {teacher?.name || 'Teacher'}
-//                   </p>
-//                 </div>
-//               </div>
-
-//               <div className="flex items-center gap-3 px-5 py-4">
-//                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-//                   <Shield size={20} />
-//                 </div>
-
-//                 <div>
-//                   <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
-//                     Account Type
-//                   </p>
-//                   <p className="font-semibold text-slate-900">
-//                     Teacher
-//                   </p>
-//                 </div>
-//               </div>
-//             </div>
-//           </section>
-
-//           <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-center shadow-sm">
-//             <p className="text-sm font-semibold text-slate-700">
-//               TypeMaster Pro
-//             </p>
-//             <p className="mt-1 text-xs text-slate-400">
-//               Teacher Settings • Version 1.0
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React from 'react';
 import {
   Volume2,
@@ -295,7 +56,7 @@ const TeacherSettingsView: React.FC = () => {
             Settings
           </h1>
           <p className="mt-1 text-sm text-[var(--tm-text-secondary)]">
-            Customize your TypeMaster Pro experience.
+            Customize your KeyPM experience.
           </p>
         </div>
 
@@ -382,7 +143,7 @@ const TeacherSettingsView: React.FC = () => {
                   Theme
                 </p>
                 <p className="text-sm text-[var(--tm-text-secondary)]">
-                  Choose how TypeMaster Pro looks.
+                  Choose how KeyPM looks.
                 </p>
               </div>
             </div>
@@ -568,7 +329,7 @@ const TeacherSettingsView: React.FC = () => {
         {/* App Info */}
         <div className="pb-4 text-center">
           <p className="text-xs text-[var(--tm-text-muted)]">
-            TypeMaster Pro
+            KeyPM
           </p>
           <p className="mt-1 text-xs text-[var(--tm-text-muted)]">
             Typing made simple, productive and fun.

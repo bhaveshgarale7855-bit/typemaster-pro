@@ -413,7 +413,7 @@ export const TeacherApplicationForm: React.FC<
                             </h1>
 
                             <p className="text-sm text-blue-100 mt-1">
-                                Submit your details to apply as a TypeMaster Pro teacher.
+                                Submit your details to apply as a KeyPM teacher.
                             </p>
                         </div>
                     </div>

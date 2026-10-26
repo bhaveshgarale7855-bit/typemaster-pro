@@ -275,7 +275,7 @@ export const StudentManagementView: React.FC = () => {
                 <input
                   type="email"
                   required
-                  placeholder="e.g. jordan@typemaster.edu"
+                  placeholder="e.g. jordan@keypm.edu"
                   value={newEmail}
                   onChange={e => setNewEmail(e.target.value)}
                   className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"

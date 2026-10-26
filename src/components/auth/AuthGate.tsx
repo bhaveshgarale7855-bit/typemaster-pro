@@ -21,7 +21,7 @@ export const AuthGate: React.FC<{ children: React.ReactNode }> = ({ children }) 
           <div className="w-14 h-14 rounded-2xl bg-blue-600/15 border border-blue-500/30 text-blue-400 flex items-center justify-center">
             <Keyboard className="w-7 h-7 animate-pulse" />
           </div>
-          <p className="text-sm text-slate-400">Checking your TypeMaster Pro session...</p>
+          <p className="text-sm text-slate-400">Checking your KeyPM session...</p>
         </div>
       </div>
     );

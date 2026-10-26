@@ -126,7 +126,7 @@ export const AdminProfileView: React.FC<AdminProfileViewProps> = ({
                 Platform
               </p>
               <p className="font-semibold text-slate-900">
-                TypeMaster Pro
+                KeyPM
               </p>
             </div>
           </div>
@@ -187,7 +187,7 @@ export const AdminProfileView: React.FC<AdminProfileViewProps> = ({
 
       <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-center shadow-sm">
         <p className="text-sm font-semibold text-slate-700">
-          TypeMaster Pro
+          KeyPM
         </p>
         <p className="mt-1 text-xs text-slate-400">
           Administrator Profile • Version 1.0

@@ -121,7 +121,7 @@ export const TypingGame: React.FC = () => {
 
       {/* Title */}
       <h2 className="text-3xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
-        TypeMaster Pro
+        KeyPM
       </h2>
 
       {/* Difficulty Selector */}

@@ -1,5 +1,100 @@
 import React from 'react';
 
+const AnimatedHands: React.FC<{ currentKey?: string }> = ({
+  currentKey = '',
+}) => {
+  const key = currentKey.toUpperCase();
+
+  const leftHand = 'QWERTASDFGZXCVB'.includes(key);
+  const rightHand = 'YUIOPHJKLNM'.includes(key);
+
+  return (
+    <div className="flex items-end justify-center gap-10 py-4">
+      <style>{`
+        @keyframes hand-tap {
+          0%, 100% { transform: translateY(0); }
+          45% { transform: translateY(7px); }
+        }
+        .animated-hand {
+          animation: hand-tap 1.2s ease-in-out infinite;
+          transform-origin: bottom center;
+        }
+        .animated-hand-right {
+          animation-delay: 0.6s;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animated-hand,
+          .animated-hand-right {
+            animation: none;
+          }
+        }
+      `}</style>
+
+      <div
+        className={`animated-hand ${rightHand ? 'opacity-50' : 'opacity-100'
+          } transition-opacity`}
+        aria-label="Left hand typing"
+      >
+        <svg viewBox="0 0 120 125" className="w-20 h-24 sm:w-24 sm:h-28">
+          <g
+            fill="#F4C7A1"
+            stroke="#B87955"
+            strokeWidth="2"
+            strokeLinejoin="round"
+          >
+            <rect x="24" y="32" width="15" height="49" rx="7" />
+            <rect x="42" y="17" width="15" height="62" rx="7" />
+            <rect x="60" y="22" width="15" height="57" rx="7" />
+            <rect x="78" y="36" width="15" height="43" rx="7" />
+            <rect x="20" y="65" width="15" height="36" rx="7"
+              transform="rotate(-35 27 83)" />
+            <path d="M34 69 Q34 58 44 58 H81 Q93 58 93 72 V91 Q93 108 76 108 H48 Q32 108 32 92 Z" />
+          </g>
+          <circle
+            cx="49"
+            cy="43"
+            r="4"
+            fill="#F59E0B"
+            opacity={leftHand ? 1 : 0.2}
+          />
+        </svg>
+        <p className="text-center text-xs text-slate-500">Left hand</p>
+      </div>
+
+      <div
+        className={`animated-hand animated-hand-right ${leftHand ? 'opacity-50' : 'opacity-100'
+          } transition-opacity`}
+        aria-label="Right hand typing"
+      >
+        <svg viewBox="0 0 120 125" className="w-20 h-24 sm:w-24 sm:h-28">
+          <g
+            fill="#F4C7A1"
+            stroke="#B87955"
+            strokeWidth="2"
+            strokeLinejoin="round"
+          >
+            <rect x="27" y="36" width="15" height="43" rx="7" />
+            <rect x="45" y="22" width="15" height="57" rx="7" />
+            <rect x="63" y="17" width="15" height="62" rx="7" />
+            <rect x="81" y="32" width="15" height="49" rx="7" />
+            <rect x="85" y="65" width="15" height="36" rx="7"
+              transform="rotate(35 92 83)" />
+            <path d="M27 72 Q27 58 39 58 H76 Q86 58 86 69 V92 Q86 108 70 108 H42 Q27 108 27 92 Z" />
+          </g>
+          <circle
+            cx="72"
+            cy="43"
+            r="4"
+            fill="#F59E0B"
+            opacity={rightHand ? 1 : 0.2}
+          />
+        </svg>
+        <p className="text-center text-xs text-slate-500">Right hand</p>
+      </div>
+    </div>
+  );
+};
+
 interface VirtualKeyboardProps {
   currentKey?: string;
   pressedKey?: string;
@@ -148,7 +243,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
   currentKey = '',
   pressedKey = '',
   isError = false,
-  showFingerGuide = true
+  showFingerGuide = true,
 }) => {
   const normCurrent = currentKey.toLowerCase();
   const normPressed = pressedKey.toLowerCase();
@@ -174,6 +269,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
           </div>
         </div>
       )}
+
 
       {/* Keyboard Bed */}
       <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2 sm:p-3 shadow-2xl shadow-black/40 backdrop-blur-sm">
@@ -206,9 +302,8 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
                 return (
                   <div
                     key={k.key}
-                    className={`relative flex items-center justify-center rounded-lg border text-[10px] sm:text-xs font-mono transition-all duration-100 ${
-                      k.width || 'flex-1'
-                    } h-8 sm:h-11 ${keyClasses}`}
+                    className={`relative flex items-center justify-center rounded-lg border text-[10px] sm:text-xs font-mono transition-all duration-100 ${k.width || 'flex-1'
+                      } h-8 sm:h-11 ${keyClasses}`}
                   >
                     <span>{k.display}</span>
                     {/* Anchor bump line for F and J */}

@@ -118,7 +118,7 @@ export const TeacherProfileView: React.FC<TeacherProfileViewProps> = ({
                 Institution
               </p>
               <p className="font-semibold text-slate-900">
-                {teacher?.institution || 'TypeMaster Academy'}
+                {teacher?.institution || 'KeyPM Academy'}
               </p>
             </div>
           </div>
@@ -174,7 +174,7 @@ export const TeacherProfileView: React.FC<TeacherProfileViewProps> = ({
       {/* Info */}
       <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-center shadow-sm">
         <p className="text-sm font-semibold text-slate-700">
-          TypeMaster Pro
+          KeyPM
         </p>
         <p className="mt-1 text-xs text-slate-400">
           Teacher Profile • Version 1.0

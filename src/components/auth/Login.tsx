@@ -520,7 +520,7 @@ export const Login: React.FC<LoginProps> = ({
 
                 <div>
                   <div className="text-2xl font-black tracking-tight">
-                    TypeMaster<span className="text-blue-200">Pro</span>
+                    KeyPM<span className="text-blue-200">Pro</span>
                   </div>
 
                   <div className="text-xs text-blue-100">
@@ -569,7 +569,7 @@ export const Login: React.FC<LoginProps> = ({
 
             <div>
               <div className="text-xl font-black">
-                TypeMaster<span className="text-blue-600">Pro</span>
+                KeyPM<span className="text-blue-600">Pro</span>
               </div>
 
               <div className="text-[11px] text-slate-500">
@@ -593,7 +593,7 @@ export const Login: React.FC<LoginProps> = ({
 
             <p className="mt-2 text-sm text-slate-500">
               {mode === 'login'
-                ? 'Sign in to continue to TypeMaster Pro.'
+                ? 'Sign in to continue to KeyPM.'
                 : role === 'teacher'
                   ? 'Use the email authorized by your administrator.'
                   : 'Create a student account to begin learning.'}

@@ -20,7 +20,7 @@ const makePassage = (
         category,
         difficulty,
         wordCount: content.trim().split(/\s+/).length,
-        author: 'TypeMaster Pro Exam Practice',
+        author: 'KeyPM Exam Practice',
         content,
     };
 };

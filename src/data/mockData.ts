@@ -235,8 +235,75 @@ export const INITIAL_LESSONS: Lesson[] = [
         focusKeys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
       }
     ]
-  }
+  },
+{
+    id: 'lesson-9',
+    moduleNumber: 5,
+    moduleTitle: 'Keyboard Row Mastery',
+    lessonNumber: 9,
+    title: 'Complete Home Row',
+    description: 'Practice all home-row keys with animated hand guidance.',
+    difficulty: 'Beginner',
+    focusKeys: ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';'],
+    exercises: [
+      {
+        id: 'lesson-9-ex-1',
+        title: 'Home Row Practice',
+        instructions: 'Keep your fingers on the home row and type each character accurately.',
+        text: 'asdf ghjk asdf jkl; fdsa ;lkj asdfghjkl;',
+        targetWpm: 20,
+        minAccuracy: 90,
+        focusKeys: ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';'],
+      },
+    ],
+    xpReward: 100,
+  },
+  {
+    id: 'lesson-10',
+    moduleNumber: 5,
+    moduleTitle: 'Keyboard Row Mastery',
+    lessonNumber: 10,
+    title: 'Upper Row Practice',
+    description: 'Learn the upper row with animated hand guidance.',
+    difficulty: 'Beginner',
+    focusKeys: ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+    exercises: [
+      {
+        id: 'lesson-10-ex-1',
+        title: 'Upper Row Practice',
+        instructions: 'Reach for the upper-row keys while keeping your wrists relaxed.',
+        text: 'qwer tyui op qw er ty ui op qwertyuiop',
+        targetWpm: 20,
+        minAccuracy: 90,
+        focusKeys: ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+      },
+    ],
+    xpReward: 100,
+  },
+  {
+    id: 'lesson-11',
+    moduleNumber: 5,
+    moduleTitle: 'Keyboard Row Mastery',
+    lessonNumber: 11,
+    title: 'Bottom Row Practice',
+    description: 'Practice the bottom row with animated hand guidance.',
+    difficulty: 'Beginner',
+    focusKeys: ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/'],
+    exercises: [
+      {
+        id: 'lesson-11-ex-1',
+        title: 'Bottom Row Practice',
+        instructions: 'Move your fingers down to the bottom row and type carefully.',
+        text: 'zxcv bnm, ./ zx cv bn m, zxcvbnm,./',
+        targetWpm: 20,
+        minAccuracy: 90,
+        focusKeys: ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/'],
+      },
+    ],
+    xpReward: 100,
+  },
 ];
+
 
 export const TYPING_PASSAGES: TypingPassage[] = [
   {
@@ -245,7 +312,7 @@ export const TYPING_PASSAGES: TypingPassage[] = [
     category: 'Technology',
     difficulty: 'Easy',
     wordCount: 54,
-    author: 'TypeMaster Academy',
+    author: 'KeyPM Academy',
     content: 'Touch typing is the ability to type without looking at the keys. Your fingers learn where each key is located through muscle memory. By practicing regularly, you can dramatically increase your speed and accuracy while reducing fatigue in your hands and wrists. Consistency is always more important than raw speed.'
   },
   {
