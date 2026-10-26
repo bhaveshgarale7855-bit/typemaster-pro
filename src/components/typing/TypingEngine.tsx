@@ -794,10 +794,14 @@ export const TypingEngine: React.FC<TypingEngineProps> = ({
       />
       <div
         ref={textDisplayRef}
-        onClick={() =>
-          containerRef.current?.focus()
-        }
-      
+        onClick={() => {
+          if (window.matchMedia('(max-width: 767px)').matches) {
+            openMobileKeyboard();
+          } else {
+            containerRef.current?.focus();
+          }
+        }}
+        
         className="relative w-full min-w-0 bg-slate-900/95 border border-slate-800/90 rounded-2xl p-3 sm:p-6 md:p-8 h-48 sm:h-56 overflow-y-auto overflow-x-hidden cursor-text shadow-2xl focus-within:ring-2 focus-within:ring-emerald-500/40 transition-all font-mono text-sm sm:text-base md:text-xl leading-relaxed break-words"
       // className="relative bg-slate-900/95 border border-slate-800/90 rounded-2xl p-6 sm:p-8 h-48 sm:h-56 overflow-y-auto cursor-text shadow-2xl focus-within:ring-2 focus-within:ring-emerald-500/40 transition-all font-mono text-base sm:text-xl leading-relaxed tracking-wide"
       >
